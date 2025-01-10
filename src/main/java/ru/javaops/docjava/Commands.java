@@ -4,6 +4,7 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import org.xml.sax.SAXException;
+import ru.javaops.docjava.xml.xsd.SchemaUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +16,7 @@ public class Commands {
     @ShellMethod(key = "xsd", value = "Validate XML file against XSD (XML Schema)")
     public void xsdValidate(@ShellOption(value = {"input", "-i"}, help = "Input file") File inputFile,
                             @ShellOption(value = {"schema", "-s"}, help = "XSD schema file") File xsdSchema) throws IOException, SAXException {
+        SchemaUtil.validate(inputFile, xsdSchema);
     }
 
     @ShellMethod(key = "say", value = "Say hello to user", group = "Math")
