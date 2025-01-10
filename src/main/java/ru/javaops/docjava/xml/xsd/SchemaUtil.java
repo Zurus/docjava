@@ -9,10 +9,14 @@ import java.nio.file.Files;
 
 public class SchemaUtil {
 
+    private SchemaUtil() {
+    }
+
     public static void validate(File inputFile, File xsdSchema) throws IOException, SAXException {
         try (Reader reader = Files.newBufferedReader(inputFile.toPath())) {
             Schemas.validate(reader, Schemas.of(xsdSchema));
         }
-        System.out.println(inputFile.getAbsolutePath() + " is valid");
+        System.out.println(inputFile.getAbsolutePath() + "is valid");
     }
+
 }

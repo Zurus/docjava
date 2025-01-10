@@ -14,7 +14,6 @@ import java.io.StringReader;
 public class Schemas {
     private static final SchemaFactory SCHEMA_FACTORY = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
-    // SchemaFactory is not thread-safe
     public static synchronized Schema of(File file) {
         try {
             return SCHEMA_FACTORY.newSchema(file);
@@ -27,7 +26,9 @@ public class Schemas {
         validate(new StringReader(str), schema);
     }
 
+
     public static void validate(Reader reader, Schema schema) throws IOException, SAXException {
         schema.newValidator().validate(new StreamSource(reader));
     }
+
 }
